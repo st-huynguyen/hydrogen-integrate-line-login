@@ -12,14 +12,14 @@ const FacebookLogin = () => {
     if (!authResponse) {
       return { status };
     }
+    console.log('Facebook');
     console.log(authResponse);
+    console.log('-------');
     setToken(authResponse);
   };
 
   useEffect(() => {
-    console.log('1');
     window.fbAsyncInit = function () {
-      console.log('5');
       FB.init({
         appId,
         autoLogAppEvents: true,
@@ -27,16 +27,13 @@ const FacebookLogin = () => {
         version: 'v8.0',
       });
       setIsReady(true);
-      console.log('2');
     };
 
     (function (d, s, id) {
       if (d.getElementById(id)) {
         setIsReady(true);
-        console.log('4');
         return;
       }
-      console.log('3');
 
       const fjs = d.getElementsByTagName(s)[0];
       const js = d.createElement(s);

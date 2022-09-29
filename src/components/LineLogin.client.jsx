@@ -44,7 +44,9 @@ const LineLogin = () => {
       axios
         .post(reqUrl, qs.stringify(reqBody), reqConfig)
         .then((res) => {
+          console.log('LINE');
           console.log(res.data);
+          console.log('-------');
           setToken(res.data);
         })
         .catch((err) => {
