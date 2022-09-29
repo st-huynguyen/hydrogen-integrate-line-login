@@ -1,19 +1,5 @@
 import { useEffect, useState } from 'react';
 
-const _extends =
-  Object.assign ||
-  function (target) {
-    for (let i = 1; i < arguments.length; i++) {
-      const source = arguments[i];
-      for (const key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-
 const useFacebook = function () {
   const appId = import.meta.env.PUBLIC_FB_ID;
   const [isReady, setIsReady] = useState(false);
@@ -30,7 +16,6 @@ const useFacebook = function () {
           '/me',
           { locale: 'en_US', fields: 'name,email,picture' },
           (me) => {
-            _extends(me, authResponse);
             resolve(me);
           }
         )
