@@ -1,39 +1,23 @@
 import React, { useState, useEffect } from 'react';
-// import useFacebook from '../hook/useFacebook';
 
 const FacebookLogin = () => {
   const appId = import.meta.env.PUBLIC_FB_ID;
   const [isReady, setIsReady] = useState(false);
-  // const [facebook, isFacebookReady] = useFacebook();
   const [token, setToken] = useState();
 
-  const loginFacebook = async () => {
+  const handleFacebookLogin = async () => {
     const { authResponse, status } = await new Promise((resolve) =>
       window.FB.login(resolve, { scope: 'public_profile,email' })
     );
-    if (!authResponse) return { status };
-
-    return new Promise((resolve) =>
-      window.FB.api(
-        '/me',
-        { locale: 'en_US', fields: 'name,email,picture' },
-        (me) => {
-          resolve(me);
-        }
-      )
-    );
-  };
-
-  const handleFacebookLogin = async () => {
-    // const response = await facebook.login();
-    // setToken(response);
-    // console.log(response);
-    const response = await loginFacebook();
-    setToken(response);
-    console.log(response);
+    if (!authResponse) {
+      return { status };
+    }
+    console.log(authResponse);
+    setToken(authResponse);
   };
 
   useEffect(() => {
+    console.log('1');
     window.fbAsyncInit = function () {
       FB.init({
         appId,
@@ -42,6 +26,7 @@ const FacebookLogin = () => {
         version: 'v8.0',
       });
       setIsReady(true);
+      console.log('2');
     };
 
     (function (d, s, id) {
@@ -49,6 +34,7 @@ const FacebookLogin = () => {
         setIsReady(true);
         return;
       }
+      console.log('3');
 
       const fjs = d.getElementsByTagName(s)[0];
       const js = d.createElement(s);
