@@ -19,6 +19,7 @@ const FacebookLogin = () => {
   useEffect(() => {
     console.log('1');
     window.fbAsyncInit = function () {
+      console.log('5');
       FB.init({
         appId,
         autoLogAppEvents: true,
@@ -32,6 +33,7 @@ const FacebookLogin = () => {
     (function (d, s, id) {
       if (d.getElementById(id)) {
         setIsReady(true);
+        console.log('4');
         return;
       }
       console.log('3');
